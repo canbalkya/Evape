@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ElementSymbol: View {
-    let shape: Generation
+    let generation: Generation
 
     var body: some View {
         GeometryReader { geometry in
@@ -39,8 +39,8 @@ struct ElementSymbol: View {
                     CGPoint(x: middle, y: topHeight / 2 + spacing * 3)
                 ])
             }
-            .fill(Color.init(red: self.shape.color[0]/255, green: self.shape.color[1]/255, blue: self.shape.color[2]/255))
-            .cornerRadius(self.shape.cornerRadius)
+            .fill(Color.init(red: self.generation.color[0]/255, green: self.generation.color[1]/255, blue: self.generation.color[2]/255))
+            .cornerRadius(self.generation.cornerRadius)
         }
     }
 }

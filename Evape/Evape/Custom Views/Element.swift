@@ -9,38 +9,38 @@
 import SwiftUI
 
 struct Element: View {
-    @State var shape: Generation
+    var generation: Generation
     @State var isTapped: Bool
     
     var badgeSymbols: some View {
-        ForEach(0..<((self.shape.rotationCount <= 0) ? 1 : self.shape.rotationCount)) { i in
-            ElementSymbol(shape: self.shape)
-                .rotationEffect(.degrees(Double(i) / Double(self.shape.rotationCount)) * self.shape.degree)
-                .cornerRadius(self.shape.cornerRadius)
+        ForEach(0..<((self.generation.rotationCount <= 0) ? 1 : self.generation.rotationCount)) { i in
+            ElementSymbol(generation: self.generation)
+                .rotationEffect(.degrees(Double(i) / Double(self.generation.rotationCount)) * self.generation.degree)
+                .cornerRadius(self.generation.cornerRadius)
         }
-        .opacity((self.shape.opacity == 0) ? 1 : self.shape.opacity)
+        .opacity((self.generation.opacity == 0) ? 1 : self.generation.opacity)
         .animation(.linear)
     }
     
     var body: some View {
         ZStack {
-            Background(shape: self.shape, isTapped: isTapped)
+            Background(generation: self.generation, isTapped: isTapped)
                 .gesture(TapGesture()
                     .onEnded({ () in
-                        guard self.shape.isSelectable else { return }
+                        guard self.generation.isSelectable else { return }
                         
                         if whoTouch == 0 && isSelected == false {
-                            whoTouch = self.shape.placement
+                            whoTouch = self.generation.placement
                             self.isTapped.toggle()
                             isSelected.toggle()
                             selectedShape.removeAll()
-                            selectedShape.append(self.shape)
-                        } else if whoTouch == self.shape.placement && isSelected == true {
+                            selectedShape.append(self.generation)
+                        } else if whoTouch == self.generation.placement && isSelected == true {
                             whoTouch = 0
                             self.isTapped.toggle()
                             isSelected.toggle()
                             selectedShape.removeAll()
-                            selectedShape.append(self.shape)
+                            selectedShape.append(self.generation)
                         }
                     }
                 )
@@ -48,7 +48,7 @@ struct Element: View {
             .animation(.linear)
             
             GeometryReader { geometry in
-                self.badgeSymbols.scaleEffect(1.0 / 2.0)
+                self.badgeSymbols.scaleEffect(1 / 2)
             }
         }.scaledToFit()
     }

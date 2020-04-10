@@ -48,7 +48,7 @@ struct CreateView: View {
                         .padding(.leading, 16).padding(.trailing, 6).animation(.linear)
                         
                         ForEach(shapes.reversed(), id: \.self) { shape in
-                            Element(shape: shape, isTapped: true)
+                            Element(generation: shape, isTapped: true)
                         }
                         .padding(.trailing, -10).animation(.linear)
                     }
@@ -60,7 +60,7 @@ struct CreateView: View {
                     ScrollView(Axis.Set.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(newShapes, id: \.self) { newShape in
-                                Element(shape: newShape, isTapped: false)
+                                Element(generation: newShape, isTapped: false)
                             }
                             .padding(.leading, -5).padding(.trailing, -5)
                         }

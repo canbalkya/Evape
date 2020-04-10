@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct Background: View {
-    let shape: Generation
+    let generation: Generation
     let isTapped: Bool
     
     var body: some View {
@@ -22,7 +22,7 @@ struct Background: View {
             
             if isTapped {
                 Group {
-                    Text("\(self.shape.number)")
+                    Text("\(self.generation.number)")
                         .padding(5.5)
                         .foregroundColor(Color.white)
                         .animation(.linear)
