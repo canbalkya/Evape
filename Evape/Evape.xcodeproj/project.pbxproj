@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3AB496192440C62F00D08CA1 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB496182440C62F00D08CA1 /* Color+Ext.swift */; };
+		3AB4961B2440C64C00D08CA1 /* LinearGradient+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4961A2440C64C00D08CA1 /* LinearGradient+Ext.swift */; };
+		3AB4961D2440C68700D08CA1 /* Generation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4961C2440C68700D08CA1 /* Generation.swift */; };
+		3AB4961F2440C7D900D08CA1 /* ButtonBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB4961E2440C7D900D08CA1 /* ButtonBackground.swift */; };
+		3AB496212440C7F200D08CA1 /* ButtonsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB496202440C7F200D08CA1 /* ButtonsStyle.swift */; };
+		3AB496232440C80900D08CA1 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB496222440C80900D08CA1 /* Background.swift */; };
+		3AB496252440C82600D08CA1 /* ElementSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB496242440C82600D08CA1 /* ElementSymbol.swift */; };
+		3AB496272440C84700D08CA1 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB496262440C84700D08CA1 /* Element.swift */; };
 		3AD548D7243F75E70042683B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD548D6243F75E70042683B /* AppDelegate.swift */; };
 		3AD548D9243F75E70042683B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD548D8243F75E70042683B /* SceneDelegate.swift */; };
 		3AD548DB243F75E70042683B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD548DA243F75E70042683B /* ContentView.swift */; };
@@ -16,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3AB496182440C62F00D08CA1 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		3AB4961A2440C64C00D08CA1 /* LinearGradient+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinearGradient+Ext.swift"; sourceTree = "<group>"; };
+		3AB4961C2440C68700D08CA1 /* Generation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generation.swift; sourceTree = "<group>"; };
+		3AB4961E2440C7D900D08CA1 /* ButtonBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonBackground.swift; sourceTree = "<group>"; };
+		3AB496202440C7F200D08CA1 /* ButtonsStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsStyle.swift; sourceTree = "<group>"; };
+		3AB496222440C80900D08CA1 /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		3AB496242440C82600D08CA1 /* ElementSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementSymbol.swift; sourceTree = "<group>"; };
+		3AB496262440C84700D08CA1 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		3AD548D3243F75E70042683B /* Evape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Evape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD548D6243F75E70042683B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AD548D8243F75E70042683B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +53,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AB496132440C57C00D08CA1 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3AD548D6243F75E70042683B /* AppDelegate.swift */,
+				3AD548D8243F75E70042683B /* SceneDelegate.swift */,
+				3AD548DC243F75EA0042683B /* Assets.xcassets */,
+				3AD548E1243F75EA0042683B /* LaunchScreen.storyboard */,
+				3AD548E4243F75EA0042683B /* Info.plist */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3AB496142440C5B700D08CA1 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				3AD548DA243F75E70042683B /* ContentView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		3AB496152440C5CD00D08CA1 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AB4961E2440C7D900D08CA1 /* ButtonBackground.swift */,
+				3AB496202440C7F200D08CA1 /* ButtonsStyle.swift */,
+				3AB496222440C80900D08CA1 /* Background.swift */,
+				3AB496242440C82600D08CA1 /* ElementSymbol.swift */,
+				3AB496262440C84700D08CA1 /* Element.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		3AB496162440C5E700D08CA1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3AB4961C2440C68700D08CA1 /* Generation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3AB496172440C5FE00D08CA1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3AB496182440C62F00D08CA1 /* Color+Ext.swift */,
+				3AB4961A2440C64C00D08CA1 /* LinearGradient+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		3AD548CA243F75E70042683B = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +121,11 @@
 		3AD548D5243F75E70042683B /* Evape */ = {
 			isa = PBXGroup;
 			children = (
-				3AD548D6243F75E70042683B /* AppDelegate.swift */,
-				3AD548D8243F75E70042683B /* SceneDelegate.swift */,
-				3AD548DA243F75E70042683B /* ContentView.swift */,
-				3AD548DC243F75EA0042683B /* Assets.xcassets */,
-				3AD548E1243F75EA0042683B /* LaunchScreen.storyboard */,
-				3AD548E4243F75EA0042683B /* Info.plist */,
+				3AB496132440C57C00D08CA1 /* Support */,
+				3AB496162440C5E700D08CA1 /* Models */,
+				3AB496142440C5B700D08CA1 /* Screens */,
+				3AB496152440C5CD00D08CA1 /* Custom Views */,
+				3AB496172440C5FE00D08CA1 /* Extensions */,
 				3AD548DE243F75EA0042683B /* Preview Content */,
 			);
 			path = Evape;
@@ -146,8 +210,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AB496252440C82600D08CA1 /* ElementSymbol.swift in Sources */,
 				3AD548D7243F75E70042683B /* AppDelegate.swift in Sources */,
+				3AB4961D2440C68700D08CA1 /* Generation.swift in Sources */,
+				3AB496192440C62F00D08CA1 /* Color+Ext.swift in Sources */,
+				3AB4961B2440C64C00D08CA1 /* LinearGradient+Ext.swift in Sources */,
 				3AD548D9243F75E70042683B /* SceneDelegate.swift in Sources */,
+				3AB496272440C84700D08CA1 /* Element.swift in Sources */,
+				3AB496232440C80900D08CA1 /* Background.swift in Sources */,
+				3AB496212440C7F200D08CA1 /* ButtonsStyle.swift in Sources */,
+				3AB4961F2440C7D900D08CA1 /* ButtonBackground.swift in Sources */,
 				3AD548DB243F75E70042683B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +360,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Evape/Preview Content\"";
 				DEVELOPMENT_TEAM = 84X92G2X4P;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Evape/Info.plist;
+				INFOPLIST_FILE = Evape/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,7 +380,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Evape/Preview Content\"";
 				DEVELOPMENT_TEAM = 84X92G2X4P;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Evape/Info.plist;
+				INFOPLIST_FILE = Evape/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
