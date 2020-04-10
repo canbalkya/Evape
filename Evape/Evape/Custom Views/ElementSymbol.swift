@@ -30,6 +30,7 @@ struct ElementSymbol: View {
                 ])
                 
                 path.move(to: CGPoint(x: middle, y: topHeight / 2 + spacing * 3))
+                
                 path.addLines([
                     CGPoint(x: middle - topWidth, y: topHeight + spacing),
                     CGPoint(x: spacing, y: height - spacing),
@@ -38,7 +39,8 @@ struct ElementSymbol: View {
                     CGPoint(x: middle, y: topHeight / 2 + spacing * 3)
                 ])
             }
-            .fill(Color.init(red: self.shape.color[0]/255, green: self.shape.color[1]/255, blue: self.shape.color[2]/255)).cornerRadius(self.shape.cornerRadius)
+            .fill(Color.init(red: self.shape.color[0]/255, green: self.shape.color[1]/255, blue: self.shape.color[2]/255))
+            .cornerRadius(self.shape.cornerRadius)
         }
     }
 }

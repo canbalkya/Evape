@@ -17,15 +17,31 @@ struct ButtonBackground<S: Shape>: View {
         ZStack {
             if isContinueButton {
                 if isHighlighted {
-                    shape.fill(LinearGradient(Color.lightEnd, Color.lightStart)).overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4)).shadow(color: Color.darkStart, radius: 10, x: 5, y: 5).shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
+                    shape
+                        .fill(LinearGradient(Color.lightEnd, Color.lightStart))
+                        .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
+                        .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
+                        .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
                 } else {
-                    shape.fill(LinearGradient(Color.darkStart, Color.darkEnd)).overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4)).shadow(color: Color.darkStart, radius: 10, x: -10, y: -10).shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+                    shape
+                        .fill(LinearGradient(Color.darkStart, Color.darkEnd))
+                        .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
+                        .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
+                        .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
                 }
             } else {
                 if isHighlighted {
-                    shape.fill(LinearGradient(Color.redEnd, Color.redStart)).overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4)).shadow(color: Color.darkStart, radius: 10, x: 5, y: 5).shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
+                    shape
+                        .fill(LinearGradient(Color.redEnd, Color.redStart))
+                        .overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4))
+                        .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
+                        .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
                 } else {
-                    shape.fill(LinearGradient(Color.darkStart, Color.darkEnd)).overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4)).shadow(color: Color.darkStart, radius: 10, x: -10, y: -10).shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
+                    shape
+                        .fill(LinearGradient(Color.darkStart, Color.darkEnd))
+                        .overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4))
+                        .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
+                        .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
                 }
             }
         }
