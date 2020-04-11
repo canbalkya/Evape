@@ -8,10 +8,6 @@
 
 import SwiftUI
 
-var selectedShape = [Generation]()
-var isSelected = false
-var whoTouch = 0
-
 struct CreateView: View {
     @State var generations = [Generation(number: 1, color: [20.0, 20.0, 20.0], cornerRadius: 5, rotationCount: 10, opacity: 0.3, degree: 36.0, isSelectable: false)]
     @State var newGenerations = [Generation]()

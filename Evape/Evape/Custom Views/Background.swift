@@ -24,7 +24,7 @@ struct Background: View {
             if isTapped {
                 Group {
                     Text("\(self.generation.number)")
-                        .font(.system(size: frame.0 / 8))
+                        .font(.system(size: frame.0 / 9))
                         .padding(frame.0 / 20)
                         .foregroundColor(Color.white)
                         .animation(.linear)
