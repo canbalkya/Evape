@@ -11,6 +11,7 @@ import SwiftUI
 struct Element: View {
     var generation: Generation
     @State var isTapped: Bool
+    let frame: (CGFloat, CGFloat)
     
     var badgeSymbols: some View {
         ForEach(0..<((self.generation.rotationCount <= 0) ? 1 : self.generation.rotationCount)) { i in
@@ -24,7 +25,7 @@ struct Element: View {
     
     var body: some View {
         ZStack {
-            Background(generation: self.generation, isTapped: isTapped)
+            Background(generation: self.generation, isTapped: isTapped, frame: frame)
                 .gesture(TapGesture()
                     .onEnded({ () in
                         guard self.generation.isSelectable else { return }

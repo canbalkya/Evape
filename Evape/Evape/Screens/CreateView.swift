@@ -13,9 +13,12 @@ var isSelected = false
 var whoTouch = 0
 
 struct CreateView: View {
-    @State var shapes = [Generation(number: 1, color: [20.0, 20.0, 20.0], cornerRadius: 5, rotationCount: 10, opacity: 0.3, degree: 36.0, isSelectable: false)]
-    @State var newShapes = [Generation]()
+    @State var generations = [Generation(number: 1, color: [20.0, 20.0, 20.0], cornerRadius: 5, rotationCount: 10, opacity: 0.3, degree: 36.0, isSelectable: false)]
+    @State var newGenerations = [Generation]()
     @State var showNewGenerations = false
+    @State var isPresented = false
+    
+    private let heightConstant: CGFloat = 125
     
     var body: some View {
         ZStack {
@@ -27,10 +30,10 @@ struct CreateView: View {
                     HStack {
                         Button(action: {
                             selectedShape.removeAll()
-                            self.newShapes.removeAll()
+                            self.newGenerations.removeAll()
                             
                             for i in 0...3 {
-                                self.newShapes.append(Generation(number: self.shapes.last!.number + 1, color: [self.shapes.last!.color[0] + .random(in: -10.0...10.0), self.shapes.last!.color[1] + .random(in: -10.0...10.0), self.shapes.last!.color[2] + .random(in: -10.0...10.0)], cornerRadius: self.shapes.last!.cornerRadius + .random(in: -5...5), rotationCount: self.shapes.last!.rotationCount + .random(in: -5...5), opacity: self.shapes.last!.opacity + .random(in: -0.1...0.1), degree: self.shapes.last!.degree + .random(in: -20.0...20.0), isSelectable: true, placement: i + 1))
+                                self.newGenerations.append(Generation(number: self.generations.last!.number + 1, color: [self.generations.last!.color[0] + .random(in: -10.0...10.0), self.generations.last!.color[1] + .random(in: -10.0...10.0), self.generations.last!.color[2] + .random(in: -10.0...10.0)], cornerRadius: self.generations.last!.cornerRadius + .random(in: -5...5), rotationCount: self.generations.last!.rotationCount + .random(in: -5...5), opacity: self.generations.last!.opacity + .random(in: -0.1...0.1), degree: self.generations.last!.degree + .random(in: -20.0...20.0), isSelectable: true, placement: i + 1))
                             }
                             
                             self.showNewGenerations = true
@@ -39,16 +42,17 @@ struct CreateView: View {
                                 Text("+").font(.system(size: 80))
                                     .foregroundColor(Color.black)
                                     .frame(width: 124, height: 124)
-                            }.background(Color.init(red: 230/255, green: 230/255, blue: 230/255))
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .frame(width: 124, height: 124)
-                                .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
-                                .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
+                            }
+                            .background(Color.init(red: 230/255, green: 230/255, blue: 230/255))
+                            .clipShape(RoundedRectangle(cornerRadius: heightConstant / 10))
+                            .frame(width: 124, height: 124)
+                            .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
+                            .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
                         }
                         .padding(.leading, 16).padding(.trailing, 6).animation(.linear)
                         
-                        ForEach(shapes.reversed(), id: \.self) { shape in
-                            Element(generation: shape, isTapped: true)
+                        ForEach(generations.reversed(), id: \.self) { shape in
+                            Element(generation: shape, isTapped: true, frame: (self.heightConstant, self.heightConstant))
                         }
                         .padding(.trailing, -10).animation(.linear)
                     }
@@ -59,8 +63,8 @@ struct CreateView: View {
                 if showNewGenerations {
                     ScrollView(Axis.Set.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(newShapes, id: \.self) { newShape in
-                                Element(generation: newShape, isTapped: false)
+                            ForEach(newGenerations, id: \.self) { newShape in
+                                Element(generation: newShape, isTapped: false, frame: (self.heightConstant, self.heightConstant))
                             }
                             .padding(.leading, -5).padding(.trailing, -5)
                         }
@@ -76,8 +80,8 @@ struct CreateView: View {
                         if isSelected {
                             whoTouch = 0
                             selectedShape[0].isSelectable = false
-                            self.shapes.append(selectedShape[0])
-                            self.newShapes.removeAll()
+                            self.generations.append(selectedShape[0])
+                            self.newGenerations.removeAll()
                             selectedShape.removeAll()
                             isSelected.toggle()
                             self.showNewGenerations = false
@@ -94,7 +98,7 @@ struct CreateView: View {
                     .animation(.linear)
                     
                     Button(action: {
-                        
+                        self.isPresented = true
                     }) {
                         Text("Finish")
                             .foregroundColor(.white)
@@ -106,6 +110,8 @@ struct CreateView: View {
                     .animation(.linear)
                 }.padding(.top, 6)
             }
+        }.sheet(isPresented: $isPresented) {
+            ResultView(generations: self.generations)
         }
     }
 }

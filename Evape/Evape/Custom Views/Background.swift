@@ -11,11 +11,12 @@ import SwiftUI
 struct Background: View {
     let generation: Generation
     let isTapped: Bool
+    let frame: (CGFloat, CGFloat)
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: 124, height: 124)
+            RoundedRectangle(cornerRadius: frame.0 / 10)
+                .frame(width: frame.0, height: frame.1)
                 .foregroundColor(Color.init(red: 230/255, green: 230/255, blue: 230/255))
                 .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
                 .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
@@ -23,14 +24,15 @@ struct Background: View {
             if isTapped {
                 Group {
                     Text("\(self.generation.number)")
-                        .padding(5.5)
+                        .font(.system(size: frame.0 / 8))
+                        .padding(frame.0 / 20)
                         .foregroundColor(Color.white)
                         .animation(.linear)
                 }
                 .background(Color.gray)
                 .clipShape(Circle())
                 .fixedSize()
-                .offset(x: 45, y: 45)
+                .offset(x: (frame.0 / 2) - (frame.0 / 8), y: (frame.1 / 2) - (frame.0 / 8))
             }
         }
     }
