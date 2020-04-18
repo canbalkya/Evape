@@ -17,97 +17,107 @@ struct CreateView: View {
     private let heightConstant: CGFloat = 125
     
     var body: some View {
-        ZStack {
-            LinearGradient(Color.darkStart, Color.darkEnd)
-                .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                ScrollView(Axis.Set.horizontal, showsIndicators: false) {
-                    HStack {
-                        Button(action: {
-                            selectedShape.removeAll()
-                            self.newGenerations.removeAll()
-                            
-                            for i in 0...3 {
-                                self.newGenerations.append(Generation(number: self.generations.last!.number + 1, color: [self.generations.last!.color[0] + .random(in: -10.0...10.0), self.generations.last!.color[1] + .random(in: -10.0...10.0), self.generations.last!.color[2] + .random(in: -10.0...10.0)], cornerRadius: self.generations.last!.cornerRadius + .random(in: -5...5), rotationCount: self.generations.last!.rotationCount + .random(in: -5...5), opacity: self.generations.last!.opacity + .random(in: -0.1...0.1), degree: self.generations.last!.degree + .random(in: -20.0...20.0), isSelectable: true, placement: i + 1))
-                            }
-                            
-                            self.showNewGenerations = true
-                        }) {
-                            Group {
-                                Text("+").font(.system(size: 80))
-                                    .foregroundColor(Color.black)
-                                    .frame(width: 124, height: 124)
-                            }
-                            .background(Color.init(red: 230/255, green: 230/255, blue: 230/255))
-                            .clipShape(RoundedRectangle(cornerRadius: heightConstant / 10))
-                            .frame(width: 124, height: 124)
-                            .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
-                            .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
-                        }
-                        .padding(.leading, 16).padding(.trailing, 6).animation(.linear)
-                        
-                        ForEach(generations.reversed(), id: \.self) { shape in
-                            Element(generation: shape, isTapped: true, frame: (self.heightConstant, self.heightConstant))
-                        }
-                        .padding(.trailing, -10).animation(.linear)
-                    }
-                }
-                .frame(height: 155).padding(.bottom, -10)
-                .animation(.linear)
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        return NavigationView {
+            ZStack {
+                LinearGradient(Color.darkStart, Color.darkEnd)
+                    .edgesIgnoringSafeArea(.all)
                 
-                if showNewGenerations {
+                VStack {
                     ScrollView(Axis.Set.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(newGenerations, id: \.self) { newShape in
-                                Element(generation: newShape, isTapped: false, frame: (self.heightConstant, self.heightConstant))
+                            Button(action: {
+                                selectedShape.removeAll()
+                                self.newGenerations.removeAll()
+                                
+                                for i in 0...3 {
+                                    self.newGenerations.append(Generation(number: self.generations.last!.number + 1, color: [self.generations.last!.color[0] + .random(in: -10.0...10.0), self.generations.last!.color[1] + .random(in: -10.0...10.0), self.generations.last!.color[2] + .random(in: -10.0...10.0)], cornerRadius: self.generations.last!.cornerRadius + .random(in: -5...5), rotationCount: self.generations.last!.rotationCount + .random(in: -5...5), opacity: self.generations.last!.opacity + .random(in: -0.1...0.1), degree: self.generations.last!.degree + .random(in: -20.0...20.0), isSelectable: true, placement: i + 1))
+                                }
+                                
+                                self.showNewGenerations = true
+                            }) {
+                                Group {
+                                    Text("+").font(.system(size: 80))
+                                        .foregroundColor(Color.black)
+                                        .frame(width: 124, height: 124)
+                                }
+                                .background(Color.init(red: 230/255, green: 230/255, blue: 230/255))
+                                .clipShape(RoundedRectangle(cornerRadius: heightConstant / 10))
+                                .frame(width: 124, height: 124)
+                                .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
+                                .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
                             }
-                            .padding(.leading, -5).padding(.trailing, -5)
+                            .padding(.leading, 16).padding(.trailing, 6).animation(.linear)
+                            
+                            ForEach(generations.reversed(), id: \.self) { generation in
+                                Element(generation: generation, isTapped: true, frame: (self.heightConstant, self.heightConstant))
+                            }
+                            .padding(.trailing, -10).animation(.linear)
                         }
-                        .padding(.leading, 6)
                     }
-                    .frame(height: 155)
-                    .padding(.bottom, -5)
-                    .animation(.linear)
-                }
-                
-                HStack {
-                    Button(action: {
-                        if isSelected {
-                            whoTouch = 0
-                            selectedShape[0].isSelectable = false
-                            self.generations.append(selectedShape[0])
-                            self.newGenerations.removeAll()
-                            selectedShape.removeAll()
-                            isSelected.toggle()
-                            self.showNewGenerations = false
-                        } else {
-                            selectedShape.removeAll()
-                        }
-                    }) {
-                        Text("Continue")
-                            .foregroundColor(.white)
-                            .padding(12)
-                    }
-                    .buttonStyle(ButtonsStyle(isContinue: true))
-                    .padding(.trailing, 15)
+                    .frame(height: 155).padding(.bottom, -10)
                     .animation(.linear)
                     
-                    Button(action: {
-                        self.isPresented = true
-                    }) {
-                        Text("Finish")
-                            .foregroundColor(.white)
-                            .padding(12)
+                    if showNewGenerations {
+                        ScrollView(Axis.Set.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(newGenerations, id: \.self) { generation in
+                                    Element(generation: generation, isTapped: false, frame: (self.heightConstant, self.heightConstant))
+                                }
+                                .padding(.leading, -5).padding(.trailing, -5)
+                            }
+                            .padding(.leading, 6)
+                        }
+                        .frame(height: 155)
+                        .padding(.bottom, -5)
+                        .animation(.linear)
                     }
-                    .disabled(showNewGenerations)
-                    .opacity(showNewGenerations ? 0.4 : 1)
-                    .buttonStyle(ButtonsStyle(isContinue: false))
-                    .animation(.linear)
-                }.padding(.top, 6)
+                    
+                    Spacer()
+                        .frame(height: 100)
+                    
+                    HStack {
+                        Button(action: {
+                            if isSelected {
+                                whoTouch = 0
+                                selectedShape[0].isSelectable = false
+                                self.generations.append(selectedShape[0])
+                                self.newGenerations.removeAll()
+                                selectedShape.removeAll()
+                                isSelected.toggle()
+                                self.showNewGenerations = false
+                            } else {
+                                selectedShape.removeAll()
+                            }
+                        }) {
+                            Text("Continue")
+                                .foregroundColor(.white)
+                                .padding(12)
+                        }
+                        .disabled(!showNewGenerations)
+                        .opacity(showNewGenerations ? 1 : 0.4)
+                        .buttonStyle(ButtonsStyle(isContinue: true))
+                        .padding(.trailing, 15)
+                        .animation(.linear)
+                        
+                        Button(action: {
+                            self.isPresented = true
+                        }) {
+                            Text("Finish")
+                                .foregroundColor(.white)
+                                .padding(12)
+                        }
+                        .disabled(showNewGenerations)
+                        .opacity(showNewGenerations ? 0.4 : 1)
+                        .buttonStyle(ButtonsStyle(isContinue: false))
+                        .animation(.linear)
+                    }.padding(.top, 6)
+                }
+            }.sheet(isPresented: $isPresented) {
+                ResultView(generations: self.generations)
             }
-        }.sheet(isPresented: $isPresented) {
-            ResultView(generations: self.generations)
+            .navigationBarTitle("Evape")
         }
     }
 }
