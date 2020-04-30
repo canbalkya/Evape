@@ -25,6 +25,23 @@ struct CreateView: View {
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack {
+                    Spacer()
+                        .frame(height: 80)
+                    
+                    ScrollView(Axis.Set.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(newGenerations, id: \.self) { generation in
+                                Element(generation: generation, isTapped: false, frame: (self.heightConstant, self.heightConstant))
+                            }
+                            .padding(.leading, -5).padding(.trailing, -5)
+                        }
+                        .padding(.leading, 6)
+                    }
+                    .disabled(!showNewGenerations)
+                    .animation(.linear)
+                    .frame(height: 155)
+                    .padding(.bottom, -5)
+                    
                     ScrollView(Axis.Set.horizontal, showsIndicators: false) {
                         HStack {
                             Button(action: {
@@ -58,24 +75,9 @@ struct CreateView: View {
                     }
                     .frame(height: 155).padding(.bottom, -10)
                     .animation(.linear)
-                    
-                    if showNewGenerations {
-                        ScrollView(Axis.Set.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(newGenerations, id: \.self) { generation in
-                                    Element(generation: generation, isTapped: false, frame: (self.heightConstant, self.heightConstant))
-                                }
-                                .padding(.leading, -5).padding(.trailing, -5)
-                            }
-                            .padding(.leading, 6)
-                        }
-                        .frame(height: 155)
-                        .padding(.bottom, -5)
-                        .animation(.linear)
-                    }
-                    
+
                     Spacer()
-                        .frame(height: 100)
+                        .frame(height: 50)
                     
                     HStack {
                         Button(action: {
@@ -113,11 +115,14 @@ struct CreateView: View {
                         .buttonStyle(ButtonsStyle(isContinue: false))
                         .animation(.linear)
                     }.padding(.top, 6)
+                    
+                    Spacer()
                 }
             }.sheet(isPresented: $isPresented) {
                 ResultView(generations: self.generations)
             }
-            .navigationBarTitle("Evape")
+            .statusBar(hidden: false)
+            .navigationBarTitle("Evape", displayMode: .automatic)
         }
     }
 }

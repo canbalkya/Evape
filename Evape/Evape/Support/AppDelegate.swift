@@ -10,11 +10,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let appereance = UINavigationBarAppearance()
+        appereance.configureWithOpaqueBackground()
+        appereance.backgroundColor = #colorLiteral(red: 0.1347140825, green: 0.1595004443, blue: 0.176540492, alpha: 1)
+        
+        let attrs: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white
+        ]
+
+        appereance.largeTitleTextAttributes = attrs
+        UINavigationBar.appearance().scrollEdgeAppearance = appereance
+        
         return true
     }
 
