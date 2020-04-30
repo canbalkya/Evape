@@ -26,7 +26,7 @@ struct CreateView: View {
                 
                 VStack {
                     Spacer()
-                        .frame(height: 80)
+                        .frame(height: 60)
                     
                     ScrollView(Axis.Set.horizontal, showsIndicators: false) {
                         HStack {
