@@ -8,13 +8,21 @@
 
 import SwiftUI
 
-struct Generation: Hashable {
-    let number: Int
-    let color: [Double]
+public struct Generation: Hashable {
+    
+    // MARK: - Properties
+    var number: Int
+    let color: UIColor
     let cornerRadius: CGFloat
     var rotationCount: Int
     let opacity: Double
     let degree: Double
     var isSelectable: Bool
-    var placement: Int = 1
+    var placement: Int
+    var heightConstant: CGFloat
+    var spacingConstant: CGFloat
+    var middleConstant: CGFloat
+    var topWidthConstant: CGFloat
+    var topHeightConstant: CGFloat
+    var yAxisConstant: CGFloat
 }

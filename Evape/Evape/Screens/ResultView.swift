@@ -9,27 +9,32 @@
 import SwiftUI
 
 struct ResultView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    // MARK: - Properties
     let generations: [Generation]
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    private let heightConstant: CGFloat = 250
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var seconds = 0
     @State var index = 0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let sizeConstant: CGFloat = 250
+    let storage = Storage()
     
+    // MARK: - UI Elements
     var body: some View {
         ZStack {
-            LinearGradient(Color.darkStart, Color.darkEnd)
+            Color.mainBackground
                 .edgesIgnoringSafeArea(.all)
             
             ZStack {
                 ForEach(generations.reversed(), id: \.self) { generation in
-                    Element(generation: generation, isTapped: true, frame: (self.heightConstant, self.heightConstant)).opacity(self.index == generation.number - 1 ? 1.0 : 0.0)
+                    self.storage.createElement(generation: generation)
+                        .opacity(self.index == generation.number - 1 ? 1 : 0)
                 }
-                .padding(.trailing, -10).animation(.linear)
+                .padding(.trailing, -10)
+                .animation(.linear)
             }
-            .frame(height: 350)
+            .frame(height: self.sizeConstant)
             .padding(.bottom, -10)
             .onReceive(timer) { time in
                 if self.seconds == self.generations.count {
@@ -45,11 +50,5 @@ struct ResultView: View {
                 self.seconds += 1
             }
         }
-    }
-}
-
-struct ResultView_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("")
     }
 }

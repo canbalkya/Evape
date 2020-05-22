@@ -9,48 +9,33 @@
 import SwiftUI
 
 struct Element: View {
-    var generation: Generation
-    @State var isTapped: Bool
-    let frame: (CGFloat, CGFloat)
     
+    // MARK: - Properties
+    let generation: Generation
+    let showIndicator: Bool
+    
+    // MARK: - UI Elements
     var badgeSymbols: some View {
         ForEach(0..<((self.generation.rotationCount <= 0) ? 1 : self.generation.rotationCount)) { i in
             ElementSymbol(generation: self.generation)
                 .rotationEffect(.degrees(Double(i) / Double(self.generation.rotationCount)) * self.generation.degree)
                 .cornerRadius(self.generation.cornerRadius)
         }
-        .opacity((self.generation.opacity == 0) ? 1 : self.generation.opacity)
-        .animation(.linear)
+        .rotationEffect(.degrees(self.generation.degree))
+        .opacity((self.generation.opacity == 0) ? 0.1 : self.generation.opacity)
+        .animation(.default)
     }
     
     var body: some View {
         ZStack {
-            Background(generation: self.generation, isTapped: isTapped, frame: frame)
-                .gesture(TapGesture()
-                    .onEnded({ () in
-                        guard self.generation.isSelectable else { return }
-                        
-                        if whoTouch == 0 && isSelected == false {
-                            whoTouch = self.generation.placement
-                            self.isTapped.toggle()
-                            isSelected.toggle()
-                            selectedShape.removeAll()
-                            selectedShape.append(self.generation)
-                        } else if whoTouch == self.generation.placement && isSelected == true {
-                            whoTouch = 0
-                            self.isTapped.toggle()
-                            isSelected.toggle()
-                            selectedShape.removeAll()
-                            selectedShape.append(self.generation)
-                        }
-                    }
-                )
-            )
-            .animation(.linear)
-            
             GeometryReader { geometry in
-                self.badgeSymbols.scaleEffect(1 / 2)
+                Background(generation: self.generation, showIndicator: self.showIndicator)
+                
+                self.badgeSymbols
+                    .padding(30)
             }
-        }.scaledToFit()
+        }
+        .scaledToFit()
+        .animation(.default)
     }
 }

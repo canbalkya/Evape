@@ -9,40 +9,20 @@
 import SwiftUI
 
 struct ButtonBackground<S: Shape>: View {
-    let isContinueButton: Bool
+    
+    // MARK: - Properties
     var isHighlighted: Bool
     var shape: S
     
+    // MARK: - UI Elements
     var body: some View {
         ZStack {
-            if isContinueButton {
-                if isHighlighted {
-                    shape
-                        .fill(LinearGradient(Color.lightEnd, Color.lightStart))
-                        .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
-                        .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
-                        .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
-                } else {
-                    shape
-                        .fill(LinearGradient(Color.darkStart, Color.darkEnd))
-                        .overlay(shape.stroke(LinearGradient(Color.lightStart, Color.lightEnd), lineWidth: 4))
-                        .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
-                        .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
-                }
+            if isHighlighted {
+                shape
+                    .fill(Color.highlightBackground)
             } else {
-                if isHighlighted {
-                    shape
-                        .fill(LinearGradient(Color.redEnd, Color.redStart))
-                        .overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4))
-                        .shadow(color: Color.darkStart, radius: 10, x: 5, y: 5)
-                        .shadow(color: Color.darkEnd, radius: 10, x: -5, y: -5)
-                } else {
-                    shape
-                        .fill(LinearGradient(Color.darkStart, Color.darkEnd))
-                        .overlay(shape.stroke(LinearGradient(Color.redStart, Color.redEnd), lineWidth: 4))
-                        .shadow(color: Color.darkStart, radius: 10, x: -10, y: -10)
-                        .shadow(color: Color.darkEnd, radius: 10, x: 10, y: 10)
-                }
+                shape
+                    .fill(Color.cardBackground)
             }
         }
     }

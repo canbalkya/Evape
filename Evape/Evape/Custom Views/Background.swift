@@ -9,30 +9,34 @@
 import SwiftUI
 
 struct Background: View {
-    let generation: Generation
-    let isTapped: Bool
-    let frame: (CGFloat, CGFloat)
     
+    // MARK: - Properties
+    @State var generation: Generation
+    let showIndicator: Bool
+    @State var isFavorite = false
+    
+    // MARK: - UI Elements
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: frame.0 / 10)
-                .frame(width: frame.0, height: frame.1)
-                .foregroundColor(Color.init(red: 230/255, green: 230/255, blue: 230/255))
-                .shadow(color: Color.darkStart, radius: 3, x: 3, y: 3)
-                .shadow(color: Color.darkEnd, radius: 3, x: -3, y: -3)
-            
-            if isTapped {
-                Group {
+            GeometryReader { geometry in
+                RoundedRectangle(cornerRadius: geometry.size.width / 10)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .foregroundColor(Color.cardBackground)
+                
+                if self.showIndicator {
                     Text(String(self.generation.number))
-                        .font(.system(size: frame.0 / 9))
-                        .padding(frame.0 / 20)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.cardBackground)
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
                         .animation(.linear)
+                        .padding(5)
+                        .fixedSize()
+                        .background(
+                            RoundedRectangle(cornerRadius: geometry.size.width / 20)
+                                .fill(Color.indicatorBackground)
+                        )
+                        .offset(x: 0, y: 0)
+                        .padding(10)
                 }
-                .background(Color.gray)
-                .clipShape(Circle())
-                .fixedSize()
-                .offset(x: (frame.0 / 2) - (frame.0 / 8), y: (frame.1 / 2) - (frame.0 / 8))
             }
         }
     }

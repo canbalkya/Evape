@@ -9,12 +9,11 @@
 import SwiftUI
 
 struct ButtonsStyle: ButtonStyle {
-    let isContinue: Bool
     
+    // MARK: - Functions
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .contentShape(Capsule())
-            .background(ButtonBackground(isContinueButton: self.isContinue, isHighlighted: configuration.isPressed, shape: Capsule()))
+            .background(ButtonBackground(isHighlighted: configuration.isPressed, shape: RoundedRectangle(cornerRadius: 10)))
             .animation(.linear)
     }
 }

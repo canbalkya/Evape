@@ -9,12 +9,34 @@
 import SwiftUI
 
 extension Color {
-    static let darkStart = Color(red: 50/255, green: 60/255, blue: 65/255)
-    static let darkEnd = Color(red: 25/255, green: 25/255, blue: 30/255)
     
-    static let lightStart = Color(red: 60/255, green: 160/255, blue: 240/255)
-    static let lightEnd = Color(red: 30/255, green: 80/255, blue: 120/255)
+    // MARK: - Properties
+    static let mainBackground = Color(red: 36/255, green: 36/255, blue: 36/255)
+    static let cardBackground = Color(red: 74/255, green: 74/255, blue: 74/255)
+    static let highlightBackground = Color(red: 145/255, green: 145/255, blue: 145/255)
+    static let indicatorBackground = Color(red: 216/255, green: 216/255, blue: 216/255)
+}
+
+extension UIColor {
     
-    static let redStart = Color(red: 220/255, green: 20/255, blue: 60/255)
-    static let redEnd = Color(red: 140/255, green: 0/255, blue: 0/255)
+    // MARK: - Properties
+    var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
+        return (red, green, blue, alpha)
+    }
+    
+    // MARK: - Functions
+    class func addRandomColor(color: UIColor) -> UIColor {
+        let r = color.rgba.red + .random(in: -0.08...0.08)
+        let g = color.rgba.green + .random(in: -0.08...0.08)
+        let b = color.rgba.blue + .random(in: -0.08...0.08)
+        
+        let newColor = UIColor(red: r, green: g, blue: b, alpha: 1)
+        return newColor
+    }
 }
