@@ -120,7 +120,7 @@ struct ChooseView: View {
                         self.isPresented = true
                     }) {
                         Text("Create a new shape!")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .font(.system(size: 21, weight: .bold, design: .rounded))
                             .padding()
                             .background(
                                 RoundedRectangle(cornerRadius: 10)

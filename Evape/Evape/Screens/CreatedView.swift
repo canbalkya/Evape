@@ -17,9 +17,16 @@ struct CreatedView: View {
     let opacity: Double
     let degree: Double
     let storage = Storage()
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        storage.createElement(generation: storage.createGeneration(color: UIColor(red: color.0, green: color.1, blue: color.2, alpha: 1.0), cornerRadius: cornerRadius, rotationCount: rotationCount, opacity: opacity, degree: degree), showIndicator: false)
-            .frame(width: 250, height: 250)
+        NavigationView {
+            storage.createElement(generation: storage.createGeneration(color: UIColor(red: color.0, green: color.1, blue: color.2, alpha: 1.0), cornerRadius: cornerRadius, rotationCount: rotationCount, opacity: opacity, degree: degree), showIndicator: false)
+                .frame(width: 250, height: 250)
+                .navigationBarItems(trailing: Button("Done") {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            )
+        }
     }
 }
