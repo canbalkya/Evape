@@ -22,7 +22,7 @@ struct Element: View {
                 .cornerRadius(self.generation.cornerRadius)
         }
         .rotationEffect(.degrees(self.generation.degree))
-        .opacity((self.generation.opacity == 0) ? 0.1 : self.generation.opacity)
+        .opacity(self.generation.opacity)
         .animation(.default)
     }
     

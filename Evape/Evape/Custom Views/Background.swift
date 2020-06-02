@@ -21,11 +21,11 @@ struct Background: View {
             GeometryReader { geometry in
                 RoundedRectangle(cornerRadius: geometry.size.width / 10)
                     .frame(width: geometry.size.width, height: geometry.size.height)
-                    .foregroundColor(Color.cardBackground)
+                    .foregroundColor(.mainBackground)
                 
                 if self.showIndicator {
                     Text(String(self.generation.number))
-                        .foregroundColor(Color.cardBackground)
+                        .foregroundColor(.mainBackground)
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .animation(.linear)
                         .padding(5)

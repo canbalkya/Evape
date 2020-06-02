@@ -11,10 +11,16 @@ import SwiftUI
 extension Color {
     
     // MARK: - Properties
-    static let mainBackground = Color(red: 36/255, green: 36/255, blue: 36/255)
-    static let cardBackground = Color(red: 74/255, green: 74/255, blue: 74/255)
+    static var mainBackground: Color {
+        return Color(#function)
+    }
+    
+    static var buttonBackground: Color {
+        return Color(#function)
+    }
+    
     static let highlightBackground = Color(red: 145/255, green: 145/255, blue: 145/255)
-    static let indicatorBackground = Color(red: 216/255, green: 216/255, blue: 216/255)
+    static let indicatorBackground = Color(red: 200/255, green: 200/255, blue: 200/255)
 }
 
 extension UIColor {

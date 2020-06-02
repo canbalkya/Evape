@@ -22,7 +22,7 @@ struct ButtonBackground<S: Shape>: View {
                     .fill(Color.highlightBackground)
             } else {
                 shape
-                    .fill(Color.cardBackground)
+                    .fill(Color.mainBackground)
             }
         }
     }

@@ -18,11 +18,10 @@ struct YearIndicatorView: View {
     var body: some View {
         Text("\(setIndicatorText()) \(text)")
             .bold()
-            .foregroundColor(.white)
             .padding(10)
             .background(
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.cardBackground)
+                    .fill(Color.mainBackground)
             )
     }
     
